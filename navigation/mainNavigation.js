@@ -1,22 +1,17 @@
 import {
-    createStackNavigator,
+    createSwitchNavigator,
 } from 'react-navigation';
-import Onboarding from '../screens/Onboarding';
-import BooksScreen from '../screens/Books/BooksScreen';
 
-const mainNavigation = createStackNavigator({
-    Home: {
-        screen: BooksScreen,
-        navigationOptions: {
-            header: null,
-        },
+import Onboarding from '../screens/Onboarding';
+import BookNavigation from './bookNavigation';
+
+const mainNavigation = createSwitchNavigator(
+    {
+        Onboarding: Onboarding,
+        Books: BookNavigation,
+    }, {
+        initialRouteName: 'Onboarding',
     },
-    Onboarding: {
-        screen: Onboarding,
-        navigationOptions: {
-            header: null,
-        },
-    },
-});
+);
 
 export default mainNavigation;
