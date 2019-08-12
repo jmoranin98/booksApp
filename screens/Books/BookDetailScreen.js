@@ -36,6 +36,7 @@ export default class BookDetailScreen extends Component {
                             </View>
                         </View>
                         <Text style={globalStyles.titleText}>{book.title}</Text>
+                        <Text style={globalStyles.normalText}>{book.description}</Text>
                     </ScrollView>
                 </View>
             </SafeAreaView>

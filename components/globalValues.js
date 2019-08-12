@@ -8,7 +8,7 @@ const globalStyles = StyleSheet.create({
         lineHeight: 31,
         fontWeight: "bold",
         marginVertical: 5,
-        paddingLeft: 16,
+        paddingHorizontal: 16,
     },
     subtitleText: {
         fontSize: 20,
@@ -20,6 +20,8 @@ const globalStyles = StyleSheet.create({
     normalText: {
         fontSize: 16,
         lineHeight: 18,
+        paddingHorizontal: 16,
+        fontWeight: "300",
     },
     page: {
         flex: 1,

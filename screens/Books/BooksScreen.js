@@ -4,6 +4,7 @@ import {
     View,
     Text,
 } from 'react-native';
+import axios from 'axios';
 
 import globalStyles from '../../components/globalValues';
 import BookCategoryTile from '../../components/Books/BookCategoryTile';
@@ -17,33 +18,22 @@ export default class BooksScreen extends Component {
             categories: [
                 'scifi', 'horror', 'kids',
             ],
-            books: [
-                {
-                    score: 3.7,
-                    title: 'Book 1',
-                    autor: 'Amanda Row',
-                    image: 'https://images.pexels.com/photos/1317943/pexels-photo-1317943.jpeg?cs=srgb&dl=adventure-cliff-daylight-1317943.jpg&fm=jpg',
-                },
-                {
-                    score: 2.5,
-                    title: 'Book 2',
-                    autor: 'Peter Strange',
-                    image: 'https://images.pexels.com/photos/2397652/pexels-photo-2397652.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-                },
-                {
-                    score: 4.0,
-                    title: 'Book 3',
-                    autor: 'Willard Holm',
-                    image: 'https://images.pexels.com/photos/2098403/pexels-photo-2098403.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-                },
-                {
-                    score: 4.3,
-                    title: 'Book 4',
-                    autor: 'Edward Stuart',
-                    image: 'https://images.pexels.com/photos/1441932/pexels-photo-1441932.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
-                },
-            ],
+            books: [],
         };
+    }
+
+    async componentDidMount() {
+        try {
+            const { data } = await axios.get('http://localhost:3000/books', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+            });
+            if (data.books) this.setState({ books: data.books });
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     render() {
